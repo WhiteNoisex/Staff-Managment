@@ -24,9 +24,10 @@
 
 
         If mode = "Lin" Then
-
+            Return
         ElseIf mode = "Bub" Then
-            sort_bubble(0)
+            Return
+            'sort_bubble(0)
             'MessageBox.Show("Error reading XML file: ")
         Else
             Return
@@ -48,13 +49,22 @@
             For j As Integer = 0 To rows - i - 1
                 If dgv_sorted.Rows(j).Cells(columnIndex).Value.ToString() > dgv_sorted.Rows(j + 1).Cells(columnIndex).Value.ToString() Then
                     ' Swap rows
-                    tempStaffID = dgv_sorted.Rows(j).Cells(0).Value.ToString()
-                    tempFirstName = dgv_sorted.Rows(j).Cells(1).Value.ToString()
-                    tempSurname = dgv_sorted.Rows(j).Cells(2).Value.ToString()
-                    tempGender = dgv_sorted.Rows(j).Cells(3).Value.ToString()
-                    tempDOB = dgv_sorted.Rows(j).Cells(4).Value.ToString()
-                    tempPay = dgv_sorted.Rows(j).Cells(5).Value.ToString()
-                    tempAdmin = dgv_sorted.Rows(j).Cells(6).Value
+
+                    Dim newline As New Staff_class With {
+                                .Staff_ID = dgv_sorted.Rows(j).Cells(0).Value.ToString(),
+                                .FirstName = dgv_sorted.Rows(j).Cells(1).Value.ToString(),
+                                .Surname = dgv_sorted.Rows(j).Cells(2).Value.ToString(),
+                                .Gender = dgv_sorted.Rows(j).Cells(3).Value.ToString(),
+                                .DOB = dgv_sorted.Rows(j).Cells(4).Value.ToString(),
+                                .Admin = dgv_sorted.Rows(j).Cells(6).Value, ' Convert "Yes"/"No" to Boolean
+                                .Skill1 = "1",
+                                .Skill2 = "1",
+                                .Skill3 = result(8),
+                                .Skill4 = result(9),
+                                .Skill5 = result(10),
+                                .Skill6 = result(11),
+                                .Pay = dgv_sorted.Rows(j).Cells(5).Value.ToString()
+                    }
 
                     dgv_sorted.Rows(j).Cells(0).Value = dgv_sorted.Rows(j + 1).Cells(0).Value.ToString()
                     dgv_sorted.Rows(j).Cells(1).Value = dgv_sorted.Rows(j + 1).Cells(1).Value.ToString()

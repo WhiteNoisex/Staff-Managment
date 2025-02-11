@@ -13,7 +13,7 @@ Public Class Form1
         'Login_Screen.WindowState = WindowState.
     End Sub
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        SaveAll()
+        'SaveAll()
         Application.Exit() ' Closes the entire application
     End Sub
 
@@ -35,66 +35,70 @@ Public Class Form1
 
         Dim openFileDialog As New OpenFileDialog()
         openFileDialog.Filter = "Text Files (*.txt)|*.txt|XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
-        openFileDialog.FilterIndex = 2
+        openFileDialog.FilterIndex = 3
         openFileDialog.Title = "Select Files"
-        openFileDialog.Multiselect = True ' Allow multiple files selection
+        openFileDialog.Multiselect = False ' Allow multiple files selection
 
         If openFileDialog.ShowDialog() = DialogResult.OK Then
             ' Iterate through each selected file
-            For Each filePath As String In openFileDialog.FileNames
-                ' Check the file extension to determine how to process it
-                If filePath.EndsWith(".txt") Then
-                    ' Process the text file
-                    Using sr As New IO.StreamReader(filePath)
-                        ' Assume txtContent is a TextBox to display the content
-                        'txtContent.AppendText(sr.ReadToEnd() & Environment.NewLine) ' Display content
-                        'MessageBox.Show(sr.ReadToEnd())
-                        While Not sr.EndOfStream
-                            Dim result As String() = sr.ReadLine().Split("|")
-                            'MessageBox.Show(result.Length)
-                            ' Ensure result has enough elements to avoid index errors
-                            If result.Length = 13 Then
-                                Dim newline As New Staff_class With {
-                                    .Staff_ID = result(0),
-                                    .FirstName = result(1),
-                                    .Surname = result(2),
-                                    .Gender = result(3),
-                                    .DOB = result(4),
-                                    .Admin = (result(5).Trim().ToLower() = "yes"), ' Convert "Yes"/"No" to Boolean
-                                    .Skill1 = result(6),
-                                    .Skill2 = result(7),
-                                    .Skill3 = result(8),
-                                    .Skill4 = result(9),
-                                    .Skill5 = result(10),
-                                    .Skill6 = result(11),
-                                    .Pay = result(12)
-                                }
-
-                                staff_list.Add(newline)
-                                'UpdateStaffList()
-                            Else
-                                ' Handle the case where the line doesn't have enough fields
-                                Console.WriteLine("Invalid line format: " & String.Join("|", result))
-                            End If
-                        End While
-
-                        UpdateStaffList()
-
-                    End Using
-                ElseIf filePath.EndsWith(".xml") Then
-                    ' Process the XML file
-                    Try
-                        Dim xdoc As XDocument = XDocument.Load(filePath)
-                        'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
-                        MessageBox.Show(xdoc.ToString())
-                    Catch ex As Exception
-                        MessageBox.Show("Error reading XML file: " & ex.Message)
-                    End Try
-                End If
-            Next
+            ReadFile(openFileDialog)
         End If
 
 
+    End Sub
+
+    Private Sub ReadFile(path As OpenFileDialog)
+        For Each filePath As String In path.FileNames
+            ' Check the file extension to determine how to process it
+            If filePath.EndsWith(".txt") Then
+                ' Process the text file
+                Using sr As New IO.StreamReader(filePath)
+                    ' Assume txtContent is a TextBox to display the content
+                    'txtContent.AppendText(sr.ReadToEnd() & Environment.NewLine) ' Display content
+                    'MessageBox.Show(sr.ReadToEnd())
+                    While Not sr.EndOfStream
+                        Dim result As String() = sr.ReadLine().Split("|")
+                        'MessageBox.Show(result.Length)
+                        ' Ensure result has enough elements to avoid index errors
+                        If result.Length = 13 Then
+                            Dim newline As New Staff_class With {
+                                .Staff_ID = result(0),
+                                .FirstName = result(1),
+                                .Surname = result(2),
+                                .Gender = result(3),
+                                .DOB = result(4),
+                                .Admin = (result(5).Trim().ToLower() = "yes"), ' Convert "Yes"/"No" to Boolean
+                                .Skill1 = result(6),
+                                .Skill2 = result(7),
+                                .Skill3 = result(8),
+                                .Skill4 = result(9),
+                                .Skill5 = result(10),
+                                .Skill6 = result(11),
+                                .Pay = result(12)
+                            }
+
+                            staff_list.Add(newline)
+                            'UpdateStaffList()
+                        Else
+                            ' Handle the case where the line doesn't have enough fields
+                            Console.WriteLine("Invalid line format: " & String.Join("|", result))
+                        End If
+                    End While
+
+                    UpdateStaffList()
+
+                End Using
+            ElseIf filePath.EndsWith(".xml") Then
+                ' Process the XML file
+                Try
+                    Dim xdoc As XDocument = XDocument.Load(filePath)
+                    'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
+                    MessageBox.Show(xdoc.ToString())
+                Catch ex As Exception
+                    MessageBox.Show("Error reading XML file: " & ex.Message)
+                End Try
+            End If
+        Next
     End Sub
 
     Private Sub btn_removestaff_Click(sender As Object, e As EventArgs) Handles btn_removestaff.Click
@@ -297,7 +301,7 @@ Public Class Form1
     End Sub
 
     Private Sub SaveAll()
-        WriteToFile(Application.StartupPath + ".txt")
+        WriteToFile(Application.StartupPath + "data.txt")
     End Sub
 
     Private Sub btn_saveall_Click(sender As Object, e As EventArgs) Handles btn_saveall.Click
