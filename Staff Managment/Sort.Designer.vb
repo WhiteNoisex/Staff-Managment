@@ -27,11 +27,14 @@ Partial Class Sort
         Me.sort_mode = New System.Windows.Forms.CheckedListBox()
         Me.combo_sortby = New System.Windows.Forms.ComboBox()
         Me.dgv_sorted = New System.Windows.Forms.DataGridView()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btn_ReverseSearch = New System.Windows.Forms.CheckBox()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FIrst_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_surname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Gender = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Age = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.col_pay = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbi_admin = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.tbl_Skill1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_skill2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -39,8 +42,6 @@ Partial Class Sort
         Me.tbl_Skill4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_ReverseSearch = New System.Windows.Forms.CheckBox()
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -59,7 +60,7 @@ Partial Class Sort
         Me.btn_cancel.Name = "btn_cancel"
         Me.btn_cancel.Size = New System.Drawing.Size(75, 23)
         Me.btn_cancel.TabIndex = 1
-        Me.btn_cancel.Text = "Cancel"
+        Me.btn_cancel.Text = "Reset"
         Me.btn_cancel.UseVisualStyleBackColor = True
         '
         'sort_mode
@@ -67,7 +68,7 @@ Partial Class Sort
         Me.sort_mode.CheckOnClick = True
         Me.sort_mode.FormattingEnabled = True
         Me.sort_mode.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.sort_mode.Items.AddRange(New Object() {"Linier", "Binary"})
+        Me.sort_mode.Items.AddRange(New Object() {"Bubble", "Selections"})
         Me.sort_mode.Location = New System.Drawing.Point(12, 152)
         Me.sort_mode.Name = "sort_mode"
         Me.sort_mode.Size = New System.Drawing.Size(120, 40)
@@ -85,96 +86,12 @@ Partial Class Sort
         'dgv_sorted
         '
         Me.dgv_sorted.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgv_sorted.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.FIrst_Name, Me.tbl_surname, Me.tbl_Gender, Me.tbl_Age, Me.tbi_admin, Me.tbl_Skill1, Me.tbl_skill2, Me.tbl_Skill3, Me.tbl_Skill4, Me.tbl_Skill5, Me.tbl_Skill6})
+        Me.dgv_sorted.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.FIrst_Name, Me.tbl_surname, Me.tbl_Gender, Me.tbl_Age, Me.col_pay, Me.tbi_admin, Me.tbl_Skill1, Me.tbl_skill2, Me.tbl_Skill3, Me.tbl_Skill4, Me.tbl_Skill5, Me.tbl_Skill6})
         Me.dgv_sorted.Location = New System.Drawing.Point(138, 12)
         Me.dgv_sorted.Name = "dgv_sorted"
         Me.dgv_sorted.RowTemplate.Height = 25
         Me.dgv_sorted.Size = New System.Drawing.Size(546, 278)
         Me.dgv_sorted.TabIndex = 4
-        '
-        'ID
-        '
-        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.Width = 43
-        '
-        'FIrst_Name
-        '
-        Me.FIrst_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.FIrst_Name.HeaderText = "First Name"
-        Me.FIrst_Name.Name = "FIrst_Name"
-        Me.FIrst_Name.Width = 89
-        '
-        'tbl_surname
-        '
-        Me.tbl_surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_surname.HeaderText = "Surname"
-        Me.tbl_surname.Name = "tbl_surname"
-        Me.tbl_surname.Width = 79
-        '
-        'tbl_Gender
-        '
-        Me.tbl_Gender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Gender.HeaderText = "Gender"
-        Me.tbl_Gender.Name = "tbl_Gender"
-        Me.tbl_Gender.Width = 70
-        '
-        'tbl_Age
-        '
-        Me.tbl_Age.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Age.HeaderText = "Age"
-        Me.tbl_Age.Name = "tbl_Age"
-        Me.tbl_Age.Width = 53
-        '
-        'tbi_admin
-        '
-        Me.tbi_admin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbi_admin.HeaderText = "Admin"
-        Me.tbi_admin.Name = "tbi_admin"
-        Me.tbi_admin.Width = 49
-        '
-        'tbl_Skill1
-        '
-        Me.tbl_Skill1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Skill1.HeaderText = "Skill 1"
-        Me.tbl_Skill1.Name = "tbl_Skill1"
-        Me.tbl_Skill1.Width = 62
-        '
-        'tbl_skill2
-        '
-        Me.tbl_skill2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_skill2.HeaderText = "Skill 2"
-        Me.tbl_skill2.Name = "tbl_skill2"
-        Me.tbl_skill2.Width = 62
-        '
-        'tbl_Skill3
-        '
-        Me.tbl_Skill3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Skill3.HeaderText = "Skill 3"
-        Me.tbl_Skill3.Name = "tbl_Skill3"
-        Me.tbl_Skill3.Width = 62
-        '
-        'tbl_Skill4
-        '
-        Me.tbl_Skill4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Skill4.HeaderText = "Skill 4"
-        Me.tbl_Skill4.Name = "tbl_Skill4"
-        Me.tbl_Skill4.Width = 62
-        '
-        'tbl_Skill5
-        '
-        Me.tbl_Skill5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Skill5.HeaderText = "Skill 5"
-        Me.tbl_Skill5.Name = "tbl_Skill5"
-        Me.tbl_Skill5.Width = 62
-        '
-        'tbl_Skill6
-        '
-        Me.tbl_Skill6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
-        Me.tbl_Skill6.HeaderText = "Skill 6"
-        Me.tbl_Skill6.Name = "tbl_Skill6"
-        Me.tbl_Skill6.Width = 62
         '
         'Label1
         '
@@ -195,6 +112,110 @@ Partial Class Sort
         Me.btn_ReverseSearch.TabIndex = 6
         Me.btn_ReverseSearch.Text = "Reverse Search"
         Me.btn_ReverseSearch.UseVisualStyleBackColor = True
+        '
+        'ID
+        '
+        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Width = 43
+        '
+        'FIrst_Name
+        '
+        Me.FIrst_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.FIrst_Name.HeaderText = "First Name"
+        Me.FIrst_Name.Name = "FIrst_Name"
+        Me.FIrst_Name.ReadOnly = True
+        Me.FIrst_Name.Width = 89
+        '
+        'tbl_surname
+        '
+        Me.tbl_surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_surname.HeaderText = "Surname"
+        Me.tbl_surname.Name = "tbl_surname"
+        Me.tbl_surname.ReadOnly = True
+        Me.tbl_surname.Width = 79
+        '
+        'tbl_Gender
+        '
+        Me.tbl_Gender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Gender.HeaderText = "Gender"
+        Me.tbl_Gender.Name = "tbl_Gender"
+        Me.tbl_Gender.ReadOnly = True
+        Me.tbl_Gender.Width = 70
+        '
+        'tbl_Age
+        '
+        Me.tbl_Age.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Age.HeaderText = "Age"
+        Me.tbl_Age.Name = "tbl_Age"
+        Me.tbl_Age.ReadOnly = True
+        Me.tbl_Age.Width = 53
+        '
+        'col_pay
+        '
+        Me.col_pay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.col_pay.HeaderText = "Pay"
+        Me.col_pay.Name = "col_pay"
+        Me.col_pay.ReadOnly = True
+        Me.col_pay.Width = 51
+        '
+        'tbi_admin
+        '
+        Me.tbi_admin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbi_admin.HeaderText = "Admin"
+        Me.tbi_admin.Name = "tbi_admin"
+        Me.tbi_admin.ReadOnly = True
+        Me.tbi_admin.Width = 49
+        '
+        'tbl_Skill1
+        '
+        Me.tbl_Skill1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Skill1.HeaderText = "Skill 1"
+        Me.tbl_Skill1.Name = "tbl_Skill1"
+        Me.tbl_Skill1.ReadOnly = True
+        Me.tbl_Skill1.Width = 62
+        '
+        'tbl_skill2
+        '
+        Me.tbl_skill2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_skill2.HeaderText = "Skill 2"
+        Me.tbl_skill2.Name = "tbl_skill2"
+        Me.tbl_skill2.ReadOnly = True
+        Me.tbl_skill2.Width = 62
+        '
+        'tbl_Skill3
+        '
+        Me.tbl_Skill3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Skill3.HeaderText = "Skill 3"
+        Me.tbl_Skill3.Name = "tbl_Skill3"
+        Me.tbl_Skill3.ReadOnly = True
+        Me.tbl_Skill3.Width = 62
+        '
+        'tbl_Skill4
+        '
+        Me.tbl_Skill4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Skill4.HeaderText = "Skill 4"
+        Me.tbl_Skill4.Name = "tbl_Skill4"
+        Me.tbl_Skill4.ReadOnly = True
+        Me.tbl_Skill4.Width = 62
+        '
+        'tbl_Skill5
+        '
+        Me.tbl_Skill5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Skill5.HeaderText = "Skill 5"
+        Me.tbl_Skill5.Name = "tbl_Skill5"
+        Me.tbl_Skill5.ReadOnly = True
+        Me.tbl_Skill5.Width = 62
+        '
+        'tbl_Skill6
+        '
+        Me.tbl_Skill6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.tbl_Skill6.HeaderText = "Skill 6"
+        Me.tbl_Skill6.Name = "tbl_Skill6"
+        Me.tbl_Skill6.ReadOnly = True
+        Me.tbl_Skill6.Width = 62
         '
         'Sort
         '
@@ -222,11 +243,13 @@ Partial Class Sort
     Friend WithEvents combo_sortby As ComboBox
     Friend WithEvents dgv_sorted As DataGridView
     Friend WithEvents Label1 As Label
+    Friend WithEvents btn_ReverseSearch As CheckBox
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents FIrst_Name As DataGridViewTextBoxColumn
     Friend WithEvents tbl_surname As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Gender As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Age As DataGridViewTextBoxColumn
+    Friend WithEvents col_pay As DataGridViewTextBoxColumn
     Friend WithEvents tbi_admin As DataGridViewCheckBoxColumn
     Friend WithEvents tbl_Skill1 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_skill2 As DataGridViewTextBoxColumn
@@ -234,5 +257,4 @@ Partial Class Sort
     Friend WithEvents tbl_Skill4 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill5 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill6 As DataGridViewTextBoxColumn
-    Friend WithEvents btn_ReverseSearch As CheckBox
 End Class

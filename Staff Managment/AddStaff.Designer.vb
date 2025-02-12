@@ -23,7 +23,6 @@ Partial Class AddStaff
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.dtp_dob = New System.Windows.Forms.DateTimePicker()
-        Me.txt_skillsbox = New System.Windows.Forms.ListBox()
         Me.chk_makeadmin = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -42,6 +41,7 @@ Partial Class AddStaff
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'dtp_dob
@@ -53,15 +53,6 @@ Partial Class AddStaff
         Me.dtp_dob.Name = "dtp_dob"
         Me.dtp_dob.Size = New System.Drawing.Size(100, 23)
         Me.dtp_dob.TabIndex = 21
-        '
-        'txt_skillsbox
-        '
-        Me.txt_skillsbox.FormattingEnabled = True
-        Me.txt_skillsbox.ItemHeight = 15
-        Me.txt_skillsbox.Location = New System.Drawing.Point(282, 75)
-        Me.txt_skillsbox.Name = "txt_skillsbox"
-        Me.txt_skillsbox.Size = New System.Drawing.Size(165, 139)
-        Me.txt_skillsbox.TabIndex = 31
         '
         'chk_makeadmin
         '
@@ -225,18 +216,26 @@ Partial Class AddStaff
         Me.TextBox1.TabIndex = 35
         Me.TextBox1.UseSystemPasswordChar = True
         '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(282, 77)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(165, 131)
+        Me.TextBox2.TabIndex = 37
+        '
         'AddStaff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(461, 287)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.dtp_dob)
-        Me.Controls.Add(Me.txt_skillsbox)
         Me.Controls.Add(Me.chk_makeadmin)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label4)
@@ -258,7 +257,6 @@ Partial Class AddStaff
     End Sub
 
     Friend WithEvents dtp_dob As DateTimePicker
-    Friend WithEvents txt_skillsbox As ListBox
     Friend WithEvents chk_makeadmin As CheckBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label4 As Label
@@ -277,4 +275,5 @@ Partial Class AddStaff
     Friend WithEvents Button2 As Button
     Friend WithEvents Label9 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
 End Class
