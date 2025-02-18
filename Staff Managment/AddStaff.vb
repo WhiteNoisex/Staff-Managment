@@ -1,4 +1,7 @@
-﻿Public Class AddStaff
+﻿Imports System.Security.Cryptography
+Imports System.Text
+
+Public Class AddStaff
     ' Event: Form Load
     Private Sub AddStaff_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize default values if needed
@@ -41,7 +44,8 @@
             .Skill4 = GetSkill(3),
             .Skill5 = GetSkill(4),
             .Skill6 = GetSkill(5),
-            .Pay = payAmount.ToString()
+            .Pay = payAmount.ToString(),
+            .Password = ""'PasswordSecurity.HashPassword(TextBox1.Text)
         }
 
         ' Add staff to the list (assuming staff_list exists)
