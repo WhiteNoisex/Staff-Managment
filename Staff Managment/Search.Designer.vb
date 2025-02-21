@@ -24,11 +24,6 @@ Partial Class Search
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dgv_sorted = New System.Windows.Forms.DataGridView()
-        Me.combo_sortby = New System.Windows.Forms.ComboBox()
-        Me.sort_mode = New System.Windows.Forms.CheckedListBox()
-        Me.btn_cancel = New System.Windows.Forms.Button()
-        Me.btn_sort = New System.Windows.Forms.Button()
-        Me.txt_search = New System.Windows.Forms.TextBox()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FIrst_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_surname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,12 +37,18 @@ Partial Class Search
         Me.tbl_Skill4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.combo_sortby = New System.Windows.Forms.ComboBox()
+        Me.sort_mode = New System.Windows.Forms.CheckedListBox()
+        Me.btn_cancel = New System.Windows.Forms.Button()
+        Me.btn_sort = New System.Windows.Forms.Button()
+        Me.txt_search = New System.Windows.Forms.TextBox()
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 25.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.Label1.Location = New System.Drawing.Point(8, 9)
         Me.Label1.Name = "Label1"
@@ -62,53 +63,8 @@ Partial Class Search
         Me.dgv_sorted.Location = New System.Drawing.Point(142, 12)
         Me.dgv_sorted.Name = "dgv_sorted"
         Me.dgv_sorted.RowTemplate.Height = 25
-        Me.dgv_sorted.Size = New System.Drawing.Size(546, 278)
+        Me.dgv_sorted.Size = New System.Drawing.Size(547, 278)
         Me.dgv_sorted.TabIndex = 11
-        '
-        'combo_sortby
-        '
-        Me.combo_sortby.FormattingEnabled = True
-        Me.combo_sortby.Items.AddRange(New Object() {"ID", "First Name", "Surname", "Gender", "Age", "Pay", "Admin", "Skills"})
-        Me.combo_sortby.Location = New System.Drawing.Point(15, 98)
-        Me.combo_sortby.Name = "combo_sortby"
-        Me.combo_sortby.Size = New System.Drawing.Size(121, 23)
-        Me.combo_sortby.TabIndex = 10
-        '
-        'sort_mode
-        '
-        Me.sort_mode.CheckOnClick = True
-        Me.sort_mode.FormattingEnabled = True
-        Me.sort_mode.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.sort_mode.Items.AddRange(New Object() {"Bubble", "Selections"})
-        Me.sort_mode.Location = New System.Drawing.Point(16, 164)
-        Me.sort_mode.Name = "sort_mode"
-        Me.sort_mode.Size = New System.Drawing.Size(120, 40)
-        Me.sort_mode.TabIndex = 9
-        '
-        'btn_cancel
-        '
-        Me.btn_cancel.Location = New System.Drawing.Point(16, 239)
-        Me.btn_cancel.Name = "btn_cancel"
-        Me.btn_cancel.Size = New System.Drawing.Size(75, 23)
-        Me.btn_cancel.TabIndex = 8
-        Me.btn_cancel.Text = "Reset"
-        Me.btn_cancel.UseVisualStyleBackColor = True
-        '
-        'btn_sort
-        '
-        Me.btn_sort.Location = New System.Drawing.Point(16, 210)
-        Me.btn_sort.Name = "btn_sort"
-        Me.btn_sort.Size = New System.Drawing.Size(75, 23)
-        Me.btn_sort.TabIndex = 7
-        Me.btn_sort.Text = "Sort"
-        Me.btn_sort.UseVisualStyleBackColor = True
-        '
-        'txt_search
-        '
-        Me.txt_search.Location = New System.Drawing.Point(15, 127)
-        Me.txt_search.Name = "txt_search"
-        Me.txt_search.Size = New System.Drawing.Size(121, 23)
-        Me.txt_search.TabIndex = 13
         '
         'ID
         '
@@ -214,10 +170,63 @@ Partial Class Search
         Me.tbl_Skill6.ReadOnly = True
         Me.tbl_Skill6.Width = 62
         '
+        'combo_sortby
+        '
+        Me.combo_sortby.FormattingEnabled = True
+        Me.combo_sortby.Items.AddRange(New Object() {"ID", "First Name", "Surname", "Gender", "Age", "Pay", "Admin", "Skills"})
+        Me.combo_sortby.Location = New System.Drawing.Point(15, 98)
+        Me.combo_sortby.Name = "combo_sortby"
+        Me.combo_sortby.Size = New System.Drawing.Size(121, 23)
+        Me.combo_sortby.TabIndex = 10
+        '
+        'sort_mode
+        '
+        Me.sort_mode.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.sort_mode.CheckOnClick = True
+        Me.sort_mode.FormattingEnabled = True
+        Me.sort_mode.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.sort_mode.Items.AddRange(New Object() {"Linier", "Binary"})
+        Me.sort_mode.Location = New System.Drawing.Point(16, 164)
+        Me.sort_mode.Name = "sort_mode"
+        Me.sort_mode.Size = New System.Drawing.Size(120, 40)
+        Me.sort_mode.TabIndex = 9
+        '
+        'btn_cancel
+        '
+        Me.btn_cancel.Location = New System.Drawing.Point(16, 239)
+        Me.btn_cancel.Name = "btn_cancel"
+        Me.btn_cancel.Size = New System.Drawing.Size(75, 23)
+        Me.btn_cancel.TabIndex = 8
+        Me.btn_cancel.Text = "Reset"
+        Me.btn_cancel.UseVisualStyleBackColor = True
+        '
+        'btn_sort
+        '
+        Me.btn_sort.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.btn_sort.FlatAppearance.BorderColor = System.Drawing.Color.Blue
+        Me.btn_sort.FlatAppearance.BorderSize = 2
+        Me.btn_sort.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.btn_sort.Location = New System.Drawing.Point(16, 210)
+        Me.btn_sort.Name = "btn_sort"
+        Me.btn_sort.Size = New System.Drawing.Size(75, 23)
+        Me.btn_sort.TabIndex = 7
+        Me.btn_sort.Text = "Sort"
+        Me.btn_sort.UseVisualStyleBackColor = False
+        '
+        'txt_search
+        '
+        Me.txt_search.Location = New System.Drawing.Point(15, 127)
+        Me.txt_search.Name = "txt_search"
+        Me.txt_search.Size = New System.Drawing.Size(121, 23)
+        Me.txt_search.TabIndex = 13
+        '
         'Search
         '
+        Me.AcceptButton = Me.btn_sort
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.CancelButton = Me.btn_cancel
         Me.ClientSize = New System.Drawing.Size(701, 301)
         Me.Controls.Add(Me.txt_search)
         Me.Controls.Add(Me.Label1)
@@ -226,7 +235,10 @@ Partial Class Search
         Me.Controls.Add(Me.sort_mode)
         Me.Controls.Add(Me.btn_cancel)
         Me.Controls.Add(Me.btn_sort)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.Name = "Search"
+        Me.ShowIcon = False
         Me.Text = "Search"
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

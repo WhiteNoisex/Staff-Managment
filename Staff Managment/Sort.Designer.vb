@@ -27,8 +27,6 @@ Partial Class Sort
         Me.sort_mode = New System.Windows.Forms.CheckedListBox()
         Me.combo_sortby = New System.Windows.Forms.ComboBox()
         Me.dgv_sorted = New System.Windows.Forms.DataGridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btn_ReverseSearch = New System.Windows.Forms.CheckBox()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FIrst_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_surname = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,6 +40,8 @@ Partial Class Sort
         Me.tbl_Skill4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbl_Skill6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btn_ReverseSearch = New System.Windows.Forms.CheckBox()
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -65,6 +65,7 @@ Partial Class Sort
         '
         'sort_mode
         '
+        Me.sort_mode.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.sort_mode.CheckOnClick = True
         Me.sort_mode.FormattingEnabled = True
         Me.sort_mode.ImeMode = System.Windows.Forms.ImeMode.Off
@@ -92,26 +93,6 @@ Partial Class Sort
         Me.dgv_sorted.RowTemplate.Height = 25
         Me.dgv_sorted.Size = New System.Drawing.Size(546, 278)
         Me.dgv_sorted.TabIndex = 4
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.Location = New System.Drawing.Point(4, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(128, 72)
-        Me.Label1.TabIndex = 5
-        Me.Label1.Text = "Sort"
-        '
-        'btn_ReverseSearch
-        '
-        Me.btn_ReverseSearch.AutoSize = True
-        Me.btn_ReverseSearch.Location = New System.Drawing.Point(15, 193)
-        Me.btn_ReverseSearch.Name = "btn_ReverseSearch"
-        Me.btn_ReverseSearch.Size = New System.Drawing.Size(104, 19)
-        Me.btn_ReverseSearch.TabIndex = 6
-        Me.btn_ReverseSearch.Text = "Reverse Search"
-        Me.btn_ReverseSearch.UseVisualStyleBackColor = True
         '
         'ID
         '
@@ -217,10 +198,31 @@ Partial Class Sort
         Me.tbl_Skill6.ReadOnly = True
         Me.tbl_Skill6.Width = 62
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label1.Location = New System.Drawing.Point(4, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(128, 72)
+        Me.Label1.TabIndex = 5
+        Me.Label1.Text = "Sort"
+        '
+        'btn_ReverseSearch
+        '
+        Me.btn_ReverseSearch.AutoSize = True
+        Me.btn_ReverseSearch.Location = New System.Drawing.Point(15, 193)
+        Me.btn_ReverseSearch.Name = "btn_ReverseSearch"
+        Me.btn_ReverseSearch.Size = New System.Drawing.Size(104, 19)
+        Me.btn_ReverseSearch.TabIndex = 6
+        Me.btn_ReverseSearch.Text = "Reverse Search"
+        Me.btn_ReverseSearch.UseVisualStyleBackColor = True
+        '
         'Sort
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.ClientSize = New System.Drawing.Size(696, 302)
         Me.Controls.Add(Me.btn_ReverseSearch)
         Me.Controls.Add(Me.Label1)

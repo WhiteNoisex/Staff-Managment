@@ -52,7 +52,7 @@ Partial Class AddStaff
         Me.dtp_dob.Location = New System.Drawing.Point(163, 191)
         Me.dtp_dob.Name = "dtp_dob"
         Me.dtp_dob.Size = New System.Drawing.Size(100, 23)
-        Me.dtp_dob.TabIndex = 21
+        Me.dtp_dob.TabIndex = 6
         '
         'chk_makeadmin
         '
@@ -60,7 +60,7 @@ Partial Class AddStaff
         Me.chk_makeadmin.Location = New System.Drawing.Point(141, 236)
         Me.chk_makeadmin.Name = "chk_makeadmin"
         Me.chk_makeadmin.Size = New System.Drawing.Size(62, 19)
-        Me.chk_makeadmin.TabIndex = 30
+        Me.chk_makeadmin.TabIndex = 8
         Me.chk_makeadmin.Text = "Admin"
         Me.chk_makeadmin.UseVisualStyleBackColor = True
         '
@@ -94,10 +94,11 @@ Partial Class AddStaff
         'txt_surnamebox
         '
         Me.txt_surnamebox.Location = New System.Drawing.Point(163, 136)
+        Me.txt_surnamebox.MaxLength = 10
         Me.txt_surnamebox.Name = "txt_surnamebox"
         Me.txt_surnamebox.PlaceholderText = "Doe"
         Me.txt_surnamebox.Size = New System.Drawing.Size(100, 23)
-        Me.txt_surnamebox.TabIndex = 26
+        Me.txt_surnamebox.TabIndex = 4
         '
         'Label6
         '
@@ -111,10 +112,11 @@ Partial Class AddStaff
         'txt_modgenderbox
         '
         Me.txt_modgenderbox.Location = New System.Drawing.Point(163, 77)
+        Me.txt_modgenderbox.MaxLength = 100
         Me.txt_modgenderbox.Name = "txt_modgenderbox"
         Me.txt_modgenderbox.PlaceholderText = "Male"
         Me.txt_modgenderbox.Size = New System.Drawing.Size(100, 23)
-        Me.txt_modgenderbox.TabIndex = 24
+        Me.txt_modgenderbox.TabIndex = 2
         '
         'Label3
         '
@@ -132,7 +134,7 @@ Partial Class AddStaff
         Me.txt_paybox.Name = "txt_paybox"
         Me.txt_paybox.PlaceholderText = "$$$"
         Me.txt_paybox.Size = New System.Drawing.Size(100, 23)
-        Me.txt_paybox.TabIndex = 22
+        Me.txt_paybox.TabIndex = 5
         '
         'Label2
         '
@@ -146,10 +148,11 @@ Partial Class AddStaff
         'txt_firstnamebox
         '
         Me.txt_firstnamebox.Location = New System.Drawing.Point(24, 136)
+        Me.txt_firstnamebox.MaxLength = 10
         Me.txt_firstnamebox.Name = "txt_firstnamebox"
         Me.txt_firstnamebox.PlaceholderText = "John"
         Me.txt_firstnamebox.Size = New System.Drawing.Size(100, 23)
-        Me.txt_firstnamebox.TabIndex = 19
+        Me.txt_firstnamebox.TabIndex = 3
         '
         'Label1
         '
@@ -163,10 +166,11 @@ Partial Class AddStaff
         'txt_staffidbox
         '
         Me.txt_staffidbox.Location = New System.Drawing.Point(24, 77)
+        Me.txt_staffidbox.MaxLength = 100
         Me.txt_staffidbox.Name = "txt_staffidbox"
         Me.txt_staffidbox.PlaceholderText = "000001"
         Me.txt_staffidbox.Size = New System.Drawing.Size(100, 23)
-        Me.txt_staffidbox.TabIndex = 17
+        Me.txt_staffidbox.TabIndex = 1
         '
         'Label8
         '
@@ -184,7 +188,7 @@ Partial Class AddStaff
         Me.Button1.Location = New System.Drawing.Point(331, 221)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(116, 43)
-        Me.Button1.TabIndex = 33
+        Me.Button1.TabIndex = 11
         Me.Button1.Text = "Create"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -194,7 +198,7 @@ Partial Class AddStaff
         Me.Button2.Location = New System.Drawing.Point(209, 221)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(116, 43)
-        Me.Button2.TabIndex = 34
+        Me.Button2.TabIndex = 10
         Me.Button2.Text = "Cancel"
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -213,7 +217,7 @@ Partial Class AddStaff
         Me.TextBox1.MaxLength = 10
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 23)
-        Me.TextBox1.TabIndex = 35
+        Me.TextBox1.TabIndex = 9
         Me.TextBox1.UseSystemPasswordChar = True
         '
         'TextBox2
@@ -222,13 +226,17 @@ Partial Class AddStaff
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(165, 131)
-        Me.TextBox2.TabIndex = 37
+        Me.TextBox2.TabIndex = 7
         '
         'AddStaff
         '
+        Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.CancelButton = Me.Button2
         Me.ClientSize = New System.Drawing.Size(461, 287)
+        Me.ControlBox = False
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.TextBox1)
@@ -249,6 +257,7 @@ Partial Class AddStaff
         Me.Controls.Add(Me.txt_firstnamebox)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txt_staffidbox)
+        Me.MaximizeBox = False
         Me.Name = "AddStaff"
         Me.Text = "AddStaff"
         Me.ResumeLayout(False)

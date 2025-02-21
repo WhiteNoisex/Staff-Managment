@@ -97,8 +97,10 @@ Partial Class Login_Screen
         '
         'Login_Screen
         '
+        Me.AcceptButton = Me.but_login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.ClientSize = New System.Drawing.Size(495, 169)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -107,11 +109,15 @@ Partial Class Login_Screen
         Me.Controls.Add(Me.Login_Label)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.but_login)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(511, 208)
+        Me.MinimizeBox = False
         Me.MinimumSize = New System.Drawing.Size(511, 208)
         Me.Name = "Login_Screen"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login_Screen"
+        Me.TopMost = True
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

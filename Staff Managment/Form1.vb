@@ -82,7 +82,7 @@ Public Class Form1
 
 
 
-    Private Sub UpdateStaffList()
+    Public Sub UpdateStaffList()
         drp_staff.Items.Clear()
 
 
@@ -137,7 +137,7 @@ Public Class Form1
 
     Private Sub btn_modpsw_Click(sender As Object, e As EventArgs) Handles btn_modpsw.Click
         If mod_mode = True Then
-
+            ChangePasswordForm.Show()
         End If
 
     End Sub
@@ -553,6 +553,11 @@ Public Class Form1
                     Dim line As String = $"{staff.Staff_ID}|{staff.FirstName}|{staff.Surname}|{staff.Gender}|{staff.DOB}|" &
                                          $"{If(staff.Admin, "Yes", "No")}|{staff.Skill1}|{staff.Skill2}|{staff.Skill3}|{staff.Skill4}|" &
                                          $"{staff.Skill5}|{staff.Skill6}|{staff.Pay}|{staff.Password}"
+
+                    If Not staff.Password = "" And staff.Admin Then
+                        UserManager.ManageEncryptionKey(staff.FirstName, PasswordSecurity.EncryptMasterKey(password_key, staff.Password))
+                    End If
+
                     encryptedLines.Add(PasswordSecurity.EncryptStringToBase64(line, password_key))
                 Next
 
@@ -615,7 +620,32 @@ Public Class Staff_class
     Public Property Skill6 As String
     Public Property Password As String
 
+    ' Method to parse DataGridViewRow into Staff_class object
+    Public Shared Function ParseFromRow(row As DataGridViewRow) As Staff_class
+        Try
+            Return New Staff_class With {
+                .Staff_ID = Convert.ToInt32(row.Cells("Staff_ID").Value),
+                .FirstName = row.Cells("FirstName").Value.ToString(),
+                .Surname = row.Cells("Surname").Value.ToString(),
+                .Gender = row.Cells("Gender").Value.ToString(),
+                .DOB = Convert.ToDateTime(row.Cells("DOB").Value),
+                .Pay = Convert.ToInt32(row.Cells("Pay").Value),
+                .Admin = Convert.ToBoolean(row.Cells("Admin").Value),
+                .Skill1 = row.Cells("Skill1").Value.ToString(),
+                .Skill2 = row.Cells("Skill2").Value.ToString(),
+                .Skill3 = row.Cells("Skill3").Value.ToString(),
+                .Skill4 = row.Cells("Skill4").Value.ToString(),
+                .Skill5 = row.Cells("Skill5").Value.ToString(),
+                .Skill6 = row.Cells("Skill6").Value.ToString(),
+                .Password = row.Cells("Password").Value.ToString()
+            }
+        Catch ex As Exception
+            MessageBox.Show("Error parsing staff data: " & ex.Message, "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End Try
+    End Function
 End Class
+
 
 
 
@@ -751,6 +781,36 @@ End Class
 Public Class UserManager
     Private Shared userFilePath As String = Application.StartupPath + "users.dat"
 
+    Public Shared Sub ManageEncryptionKey(username As String, encryptionKey As String)
+        Dim updated As Boolean = False
+
+        ' Ensure file exists
+        If Not File.Exists(userFilePath) Then
+            File.Create(userFilePath).Dispose()
+        End If
+
+        ' Read all lines and check if key exists
+        Dim lines As List(Of String) = File.ReadAllLines(userFilePath).ToList()
+
+        For i As Integer = 0 To lines.Count - 1
+            If lines(i).StartsWith(username & ":") Then
+                ' Update existing key
+                lines(i) = username & ":" & encryptionKey
+                updated = True
+                Exit For
+            End If
+        Next
+
+        ' If no existing key, create new entry
+        If Not updated Then
+            lines.Add(username & ":" & encryptionKey)
+        End If
+
+        ' Write back to file
+        File.WriteAllLines(userFilePath, lines)
+    End Sub
+
+
     ' 🟢 Function to Add a New User with a Password
     Public Shared Sub AddUser(username As String, password As String)
         Dim masterKey As String = GenerateMasterKey() ' Generate a master key for database encryption
@@ -759,6 +819,30 @@ Public Class UserManager
         ' Save to file
         Dim newUser As String = $"{username}:{encryptedMasterKey}"
         File.AppendAllText(userFilePath, newUser & Environment.NewLine)
+    End Sub
+
+    Public Shared Sub RemoveUser(username As String)
+        ' Check if the file exists
+        If Not File.Exists(userFilePath) Then
+            MessageBox.Show("User file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        ' Read all lines and filter out the user
+        Dim lines As List(Of String) = File.ReadAllLines(userFilePath).ToList()
+        Dim updatedLines = lines.Where(Function(line) Not line.StartsWith(username & ":")).ToList()
+
+        ' Check if the user was found and removed
+        If lines.Count = updatedLines.Count Then
+            MessageBox.Show("User not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        ' Overwrite the file with updated user list
+        File.WriteAllLines(userFilePath, updatedLines)
+
+        ' Confirmation message
+        MessageBox.Show($"User '{username}' has been removed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     ' 🟢 Function to Retrieve the Encrypted Master Key for a Username
