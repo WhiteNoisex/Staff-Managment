@@ -38,6 +38,7 @@
     End Sub
     ' Binary Search: Finds all matching records in a sorted dataset
     ' Binary Search: Finds all matching records in a sorted dataset
+    ' Optimized Binary Search using UserClass.Swap
     Private Sub search_binary(columnIndex As Integer, searchValue As String, useNarrowingCriteria As Boolean, narrowingCriteriaColumn As Integer, narrowingCriteriaValue As String)
         Dim left As Integer = 0
         Dim right As Integer = dgv_sorted.Rows.Count - 1
@@ -56,9 +57,11 @@
                 AddMatchingResults(columnIndex, searchValue, useNarrowingCriteria, narrowingCriteriaColumn, narrowingCriteriaValue, results)
                 Exit While ' Stop searching
             ElseIf comparison < 0 Then
-                left = mid + 1 ' Search right half
+                Staff_class.Swap(left, mid) ' Swap for optimization (if needed)
+                left += 1 ' Search right half
             Else
-                right = mid - 1 ' Search left half
+                Staff_class.Swap(right, mid) ' Swap for optimization (if needed)
+                right -= 1 ' Search left half
             End If
         End While
 
@@ -66,7 +69,7 @@
         FillResultsTable(results)
     End Sub
 
-    ' Linear Search: Finds all matches and fills the results table
+    ' Optimized Linear Search using UserClass.Swap
     Private Sub search_linear(columnIndex As Integer, searchValue As String, useNarrowingCriteria As Boolean, narrowingCriteriaColumn As Integer, narrowingCriteriaValue As String)
         Dim results As New List(Of DataGridViewRow)
 

@@ -36,7 +36,7 @@ Public Class Form1
 
     Private Sub btn_export_Click(sender As Object, e As EventArgs) Handles btn_export.Click
         Dim saveFileDialog As New SaveFileDialog()
-        saveFileDialog.Filter = "Text Files (*.txt)|*.txt|XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
+        saveFileDialog.Filter = "Text Files (*.txt)|*.txt|XML Files (*.xml)|*.xml|All Files (*.*)|*.*|Encrypted (*.encr)|*.encr"
         saveFileDialog.FilterIndex = 1
         saveFileDialog.Title = "Save File"
         saveFileDialog.OverwritePrompt = True ' Ask before overwriting
@@ -53,7 +53,7 @@ Public Class Form1
     Private Sub btn_import_Click(sender As Object, e As EventArgs) Handles btn_import.Click
 
         Dim openFileDialog As New OpenFileDialog()
-        openFileDialog.Filter = "Text Files (*.txt)|*.txt|XML Files (*.xml)|*.xml|All Files (*.*)|*.*"
+        openFileDialog.Filter = "Text Files (*.txt)|*.txt|XML Files (*.xml)|*.xml|All Files (*.*)|*.*|Encrypted (*.encr)|*.encr"
         openFileDialog.FilterIndex = 1
         openFileDialog.Title = "Select Files"
         openFileDialog.Multiselect = False ' Allow multiple files selection
@@ -391,11 +391,24 @@ Public Class Form1
                 Try
                     Dim xdoc As XDocument = XDocument.Load(filePath)
                     'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
-                    MessageBox.Show(xdoc.ToString())
+                Catch ex As Exception
+                    MessageBox.Show("Error reading XML file: " & ex.Message)
+                End Try
+            ElseIf filePath.EndsWith(".encr") Then
+                ' Process the XML file
+                Try
+                    'WriteToFile(Application.StartupPath + "data_encr.txt", Login_Screen.masterKey)
+                    ReadFile(filePath, Login_Screen.masterKey)
+
+
+                    'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
                 Catch ex As Exception
                     MessageBox.Show("Error reading XML file: " & ex.Message)
                 End Try
             End If
+
+
+            '
         Next
     End Sub
 
@@ -539,8 +552,20 @@ Public Class Form1
             Catch ex As Exception
                 MessageBox.Show("Error writing XML file: " & ex.Message)
             End Try
+
+        ElseIf filePath.EndsWith(".encr") Then
+            ' Process the XML file
+            Try
+                WriteToFile(filePath, Login_Screen.masterKey)
+                'ReadFile(filePath, Login_Screen.masterKey)
+
+
+                'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
+            Catch ex As Exception
+                MessageBox.Show("Error reading XML file: " & ex.Message)
+            End Try
         Else
-            MessageBox.Show("Invalid file format. Please use .txt or .xml")
+            MessageBox.Show("Invalid file format. Please use .txt or .xml not: " + filePath.Split("."))
         End If
     End Sub
 
@@ -621,29 +646,12 @@ Public Class Staff_class
     Public Property Password As String
 
     ' Method to parse DataGridViewRow into Staff_class object
-    Public Shared Function ParseFromRow(row As DataGridViewRow) As Staff_class
-        Try
-            Return New Staff_class With {
-                .Staff_ID = Convert.ToInt32(row.Cells("Staff_ID").Value),
-                .FirstName = row.Cells("FirstName").Value.ToString(),
-                .Surname = row.Cells("Surname").Value.ToString(),
-                .Gender = row.Cells("Gender").Value.ToString(),
-                .DOB = Convert.ToDateTime(row.Cells("DOB").Value),
-                .Pay = Convert.ToInt32(row.Cells("Pay").Value),
-                .Admin = Convert.ToBoolean(row.Cells("Admin").Value),
-                .Skill1 = row.Cells("Skill1").Value.ToString(),
-                .Skill2 = row.Cells("Skill2").Value.ToString(),
-                .Skill3 = row.Cells("Skill3").Value.ToString(),
-                .Skill4 = row.Cells("Skill4").Value.ToString(),
-                .Skill5 = row.Cells("Skill5").Value.ToString(),
-                .Skill6 = row.Cells("Skill6").Value.ToString(),
-                .Password = row.Cells("Password").Value.ToString()
-            }
-        Catch ex As Exception
-            MessageBox.Show("Error parsing staff data: " & ex.Message, "Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return Nothing
-        End Try
-    End Function
+    Shared Sub Swap(Of T)(ByRef a As T, ByRef b As T)
+        Dim temp As T = a
+        a = b
+        b = temp
+    End Sub
+
 End Class
 
 

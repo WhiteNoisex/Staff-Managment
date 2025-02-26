@@ -63,7 +63,7 @@
         Try
             ' If file does not exist, create it with default encrypted data
             If Not IO.File.Exists(path) Then
-                Dim defaultData As String = "2001|Liam|Peterson|Male|22/03/1985 12:00:00 AM|Yes|Software Engineering|Java|Python|C++|Algorithms|Databases|120000|"
+                Dim defaultData As String = "-1|Admin|Admin|None|22/03/1985 12:00:00 AM|Yes||||||||"
                 Dim encryptedData As String = PasswordSecurity.EncryptStringToBase64(defaultData, masterKey)
                 IO.File.WriteAllText(path, encryptedData) ' Write single encrypted record
                 Return defaultData

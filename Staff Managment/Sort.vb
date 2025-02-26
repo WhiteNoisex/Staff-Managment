@@ -24,7 +24,7 @@
         End If
     End Sub
 
-    ' 🟢 Improved Bubble Sort (Handles Numeric and Null Values)
+    ' 🟢 Bubble Sort (Uses UserClass.Swap for swapping rows)
     Private Sub sort_bubble(columnIndex As Integer)
         Dim rows As Integer = dgv_sorted.Rows.Count - 1
 
@@ -58,7 +58,7 @@
         Next
     End Sub
 
-    ' 🟢 Improved Selection Sort (Handles Numeric and Null Values)
+    ' 🟢 Selection Sort (Uses UserClass.Swap for swapping rows)
     Private Sub sort_selection(columnIndex As Integer)
         Dim rows As Integer = dgv_sorted.Rows.Count - 1
 
@@ -97,12 +97,10 @@
         Next
     End Sub
 
-    ' 🔄 Helper Function: Swap Two Rows in DataGridView
+    ' 🔄 Swap Rows Using UserClass.Swap
     Private Sub SwapRows(row1 As Integer, row2 As Integer)
         For col As Integer = 0 To dgv_sorted.Columns.Count - 1
-            Dim temp As Object = dgv_sorted.Rows(row1).Cells(col).Value
-            dgv_sorted.Rows(row1).Cells(col).Value = dgv_sorted.Rows(row2).Cells(col).Value
-            dgv_sorted.Rows(row2).Cells(col).Value = temp
+            Staff_class.Swap(dgv_sorted.Rows(row1).Cells(col).Value, dgv_sorted.Rows(row2).Cells(col).Value)
         Next
     End Sub
 
@@ -164,5 +162,4 @@
         ' Restore the Add New Row functionality if it was enabled
         dgv_sorted.AllowUserToAddRows = addNewRowEnabled
     End Sub
-
 End Class
