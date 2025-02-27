@@ -565,7 +565,9 @@ Public Class Form1
                 MessageBox.Show("Error reading XML file: " & ex.Message)
             End Try
         Else
-            MessageBox.Show("Invalid file format. Please use .txt or .xml not: " + filePath.Split("."))
+            Dim fileExtension As String = System.IO.Path.GetExtension(filePath)
+            MessageBox.Show("W1) Invalid file format. Please use .txt or .xml not: " & fileExtension)
+
         End If
     End Sub
 
@@ -621,8 +623,20 @@ Public Class Form1
             Catch ex As Exception
                 MessageBox.Show("Error writing XML file: " & ex.Message)
             End Try
+        ElseIf filePath.EndsWith(".encr") Then
+            ' Process the XML file
+            Try
+                WriteToFile(filePath, Login_Screen.masterKey)
+                'ReadFile(filePath, Login_Screen.masterKey)
+
+
+                'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
+            Catch ex As Exception
+                MessageBox.Show("Error reading XML file: " & ex.Message)
+            End Try
         Else
-            MessageBox.Show("Invalid file format. Please use .txt or .xml")
+            Dim fileExtension As String = System.IO.Path.GetExtension(filePath)
+            MessageBox.Show("W2) Invalid file format. Please use .txt or .xml not: " & fileExtension)
         End If
     End Sub
 
