@@ -62,7 +62,7 @@ Public Class Form1
 
         If openFileDialog.ShowDialog() = DialogResult.OK Then
             ' Iterate through each selected file
-            ReadFile(openFileDialog.FileName)
+            ReadFile(openFileDialog)
         End If
 
 
@@ -378,7 +378,7 @@ Public Class Form1
                             'UpdateStaffList()
                         Else
                             ' Handle the case where the line doesn't have enough fields
-                            MessageBox.Show("Error Invalid File Format")
+                            MessageBox.Show("W3: Error Invalid File Format")
                             Console.WriteLine("Invalid line format: " & String.Join("|", result))
                         End If
                     End While
@@ -448,7 +448,7 @@ Public Class Form1
                     'UpdateStaffList()
                 Else
                     ' Handle the case where the line doesn't have enough fields
-                    MessageBox.Show("Error Invalid File Format")
+                    MessageBox.Show("W4: Error Invalid File Format")
                     'Console.WriteLine("Invalid line format: " & String.Join("|", result))
                 End If
             End While
@@ -626,13 +626,25 @@ Public Class Form1
         ElseIf filePath.EndsWith(".encr") Then
             ' Process the XML file
             Try
-                WriteToFile(filePath, Login_Screen.masterKey)
-                'ReadFile(filePath, Login_Screen.masterKey)
+                ' Convert all staff records to encrypted lines at once
+                Dim encryptedLines As New List(Of String)
+                For Each staff As Staff_class In staff_list
+                    Dim line As String = $"{staff.Staff_ID}|{staff.FirstName}|{staff.Surname}|{staff.Gender}|{staff.DOB}|" &
+                                         $"{If(staff.Admin, "Yes", "No")}|{staff.Skill1}|{staff.Skill2}|{staff.Skill3}|{staff.Skill4}|" &
+                                         $"{staff.Skill5}|{staff.Skill6}|{staff.Pay}|{staff.Password}"
 
+                    If Not staff.Password = "" And staff.Admin Then
+                        UserManager.ManageEncryptionKey(staff.FirstName, PasswordSecurity.EncryptMasterKey(password_key, staff.Password))
+                    End If
 
-                'txtContent.AppendText(xdoc.ToString() & Environment.NewLine) ' Display content
+                    encryptedLines.Add(PasswordSecurity.EncryptStringToBase64(line, password_key))
+                Next
+
+                ' Write all encrypted lines at once
+                IO.File.WriteAllLines(filePath, encryptedLines)
+
             Catch ex As Exception
-                MessageBox.Show("Error reading XML file: " & ex.Message)
+                MessageBox.Show("Error writing to encripted file: " & ex.Message)
             End Try
         Else
             Dim fileExtension As String = System.IO.Path.GetExtension(filePath)
