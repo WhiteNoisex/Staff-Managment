@@ -3,12 +3,26 @@ Imports System.Text
 
 Public Class AddStaff
     ' Event: Form Load
+
+
+    ' Subroutine: AddStaff_Load
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Envriomental Effect:
+    ' Updates "dtp_dob" value to today
     Private Sub AddStaff_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Initialize default values if needed
         dtp_dob.Value = DateTime.Today
     End Sub
 
-    ' Event: Submit Button (Add Staff)
+
+    ' Subroutine: Button1_Click
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Envriomental Effect:
+    ' Creates new member of "Staff_class" with collected values, then adds them to the "Form1.staff_list" and calling "Form1.UpdateStaffList()" and closing the current form "AddStaff"
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' Validate required fields
         If txt_staffidbox.Text.Trim() = "" OrElse txt_firstnamebox.Text.Trim() = "" OrElse txt_surnamebox.Text.Trim() = "" Then
@@ -71,13 +85,32 @@ Public Class AddStaff
         Me.Close()
     End Sub
 
-    ' Function: Retrieves skills from the skill list
+
+    ' Function: GetSkill
+    ' Inputs: an index as Integer
+    ' Returns: A string representing the skill at the specified index
+    '
+    ' Environmental Effect:
+    ' Retrieves a skill from TextBox2 based on the given index. If the index is invalid, it returns an empty string.
     Private Function GetSkill(index As Integer) As String
-        Dim skills As String() = TextBox2.Lines
-        Return If(skills.Length > index AndAlso Not String.IsNullOrWhiteSpace(skills(index)), skills(index).Trim(), "")
+        Dim skills As String() = TextBox2.Lines ' Get all lines (skills) from TextBox2
+
+        ' Check if the index is within range and if the skill at that index is not empty
+        If skills.Length > index AndAlso Not String.IsNullOrWhiteSpace(skills(index)) Then
+            Return skills(index).Trim()
+        End If
+
+        ' Return an empty string if the index is out of bounds or the skill is empty
+        Return ""
     End Function
 
-    ' Event: Cancel Button (Closes Form)
+
+    ' Subroutine: Button2_Click
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Environmental Effect:
+    ' Closes This Form
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to cancel?", "Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then

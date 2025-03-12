@@ -1,5 +1,13 @@
 ﻿Public Class removestaff
 
+
+
+    ' Subroutine: removestaff_Load
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Envriomental Effect:
+    ' Clears Exisitng "dgv_sorted" rows and replaces them with all items in list "Form1.staff_list"
     Private Sub removestaff_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgv_sorted.Rows.Clear()
         For index = 0 To Form1.staff_list.Count - 1
@@ -9,7 +17,13 @@
         Next
     End Sub
 
-
+    ' Subroutine: btn_confirm_Click
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Envriomental Effect:
+    ' Calls "UserManager.RemoveUser" for all rows with the checkbox active and is "tbi_admin" is selected. Removes Selected indexs from "Form1.staff_list" and then 
+    ' Clears Exisitng "dgv_sorted" rows and replaces them with all items in list "Form1.staff_list"
     Private Sub btn_confirm_Click(sender As Object, e As EventArgs) Handles btn_confirm.Click
         Try
 
@@ -54,7 +68,12 @@
         End Try
     End Sub
 
-
+    ' Subroutine: btn_Cancel_Click
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Envriomental Effect:
+    ' Hides the Current Form "removestaff" then shows the "Form1" Form
     Private Sub btn_Cancel_Click(sender As Object, e As EventArgs) Handles btn_Cancel.Click
         Me.Hide()
         Form1.Show()

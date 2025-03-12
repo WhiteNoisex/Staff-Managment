@@ -1,12 +1,13 @@
 ﻿Public Class Sort
     Dim mode As String = "Lin" ' Default mode
+    Dim myStopwatch As New TimerHelper()
 
     Private Sub btn_sort_Click(sender As Object, e As EventArgs) Handles btn_sort.Click
         ' Clear and reload DataGridView
         dgv_sorted.Rows.Clear()
         For Each staff In Form1.staff_list
             dgv_sorted.Rows.Add(staff.Staff_ID, staff.FirstName, staff.Surname, staff.Gender,
-                                staff.DOB, staff.Pay, staff.Admin, staff.Skill1, staff.Skill2,
+                                DateDiff(DateInterval.Year, staff.DOB, Date.Today), staff.Pay, staff.Admin, staff.Skill1, staff.Skill2,
                                 staff.Skill3, staff.Skill4, staff.Skill5, staff.Skill6)
         Next
 
@@ -17,6 +18,8 @@
         End If
 
         ' Perform sorting based on selected mode
+        myStopwatch.StartTimer()
+
         If mode = "Lin" Then
             sort_selection(combo_sortby.SelectedIndex)
         ElseIf mode = "Bub" Then
@@ -56,6 +59,8 @@
                 End If
             Next
         Next
+
+        EndSort()
     End Sub
 
     ' 🟢 Selection Sort (Uses UserClass.Swap for swapping rows)
@@ -95,9 +100,11 @@
                 SwapRows(i, minIndex)
             End If
         Next
+        EndSort()
+
     End Sub
 
-    ' 🔄 Swap Rows Using UserClass.Swap
+    ' Swap Rows Using UserClass.Swap
     Private Sub SwapRows(row1 As Integer, row2 As Integer)
         For col As Integer = 0 To dgv_sorted.Columns.Count - 1
             Staff_class.Swap(dgv_sorted.Rows(row1).Cells(col).Value, dgv_sorted.Rows(row2).Cells(col).Value)
@@ -132,7 +139,7 @@
         dgv_sorted.Rows.Clear()
         For Each staff In Form1.staff_list
             dgv_sorted.Rows.Add(staff.Staff_ID, staff.FirstName, staff.Surname, staff.Gender,
-                                staff.DOB, staff.Pay, staff.Admin, staff.Skill1, staff.Skill2,
+                                DateDiff(DateInterval.Year, staff.DOB, Date.Today), staff.Pay, staff.Admin, staff.Skill1, staff.Skill2,
                                 staff.Skill3, staff.Skill4, staff.Skill5, staff.Skill6)
         Next
     End Sub
@@ -161,5 +168,12 @@
 
         ' Restore the Add New Row functionality if it was enabled
         dgv_sorted.AllowUserToAddRows = addNewRowEnabled
+    End Sub
+
+    Private Sub EndSort()
+        myStopwatch.StopTimer()
+        txt_searchtime.Text = myStopwatch.GetFormattedTime
+        myStopwatch.ResetTimer()
+
     End Sub
 End Class

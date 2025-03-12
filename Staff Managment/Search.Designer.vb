@@ -42,6 +42,8 @@ Partial Class Search
         Me.btn_cancel = New System.Windows.Forms.Button()
         Me.btn_sort = New System.Windows.Forms.Button()
         Me.txt_search = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txt_searchtime = New System.Windows.Forms.Label()
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -220,6 +222,24 @@ Partial Class Search
         Me.txt_search.Size = New System.Drawing.Size(121, 23)
         Me.txt_search.TabIndex = 13
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(15, 55)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(94, 15)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "Search Duration:"
+        '
+        'txt_searchtime
+        '
+        Me.txt_searchtime.AutoSize = True
+        Me.txt_searchtime.Location = New System.Drawing.Point(15, 70)
+        Me.txt_searchtime.Name = "txt_searchtime"
+        Me.txt_searchtime.Size = New System.Drawing.Size(49, 15)
+        Me.txt_searchtime.TabIndex = 15
+        Me.txt_searchtime.Text = "00:00:00"
+        '
         'Search
         '
         Me.AcceptButton = Me.btn_sort
@@ -228,6 +248,8 @@ Partial Class Search
         Me.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.CancelButton = Me.btn_cancel
         Me.ClientSize = New System.Drawing.Size(701, 301)
+        Me.Controls.Add(Me.txt_searchtime)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_search)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dgv_sorted)
@@ -266,4 +288,6 @@ Partial Class Search
     Friend WithEvents tbl_Skill4 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill5 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill6 As DataGridViewTextBoxColumn
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txt_searchtime As Label
 End Class

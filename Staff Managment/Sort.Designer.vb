@@ -42,6 +42,8 @@ Partial Class Sort
         Me.tbl_Skill6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btn_ReverseSearch = New System.Windows.Forms.CheckBox()
+        Me.txt_searchtime = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.dgv_sorted, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -202,7 +204,7 @@ Partial Class Sort
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 40.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.Location = New System.Drawing.Point(4, 9)
+        Me.Label1.Location = New System.Drawing.Point(4, -6)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(128, 72)
         Me.Label1.TabIndex = 5
@@ -218,12 +220,32 @@ Partial Class Sort
         Me.btn_ReverseSearch.Text = "Reverse Search"
         Me.btn_ReverseSearch.UseVisualStyleBackColor = True
         '
+        'txt_searchtime
+        '
+        Me.txt_searchtime.AutoSize = True
+        Me.txt_searchtime.Location = New System.Drawing.Point(11, 81)
+        Me.txt_searchtime.Name = "txt_searchtime"
+        Me.txt_searchtime.Size = New System.Drawing.Size(49, 15)
+        Me.txt_searchtime.TabIndex = 17
+        Me.txt_searchtime.Text = "00:00:00"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(11, 66)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 15)
+        Me.Label2.TabIndex = 16
+        Me.Label2.Text = "Sort Duration:"
+        '
         'Sort
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ScrollBar
         Me.ClientSize = New System.Drawing.Size(696, 302)
+        Me.Controls.Add(Me.txt_searchtime)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.btn_ReverseSearch)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dgv_sorted)
@@ -259,4 +281,6 @@ Partial Class Sort
     Friend WithEvents tbl_Skill4 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill5 As DataGridViewTextBoxColumn
     Friend WithEvents tbl_Skill6 As DataGridViewTextBoxColumn
+    Friend WithEvents txt_searchtime As Label
+    Friend WithEvents Label2 As Label
 End Class

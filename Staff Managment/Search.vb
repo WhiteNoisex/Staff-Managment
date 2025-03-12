@@ -1,18 +1,36 @@
-﻿Public Class Search
+﻿Imports Staff_Managment.TimerHelper
+Public Class Search
     Dim mode As String
-
+    Dim myStopwatch As New TimerHelper()
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_sorted.CellContentClick
 
     End Sub
 
     Private Sub btn_sort_Click(sender As Object, e As EventArgs) Handles btn_sort.Click
+
+
+        ' Start timer
+        myStopwatch.StartTimer()
+
+        ' Simulate some process
+        'Threading.Thread.Sleep(2000) ' Simulate a 2-second delay
+
+        ' Stop timer
+        'myStopwatch.StopTimer()
+
+        ' Display elapsed time
+        'MessageBox.Show("Elapsed Time: " & myStopwatch.GetFormattedTime())
+
+
+
+
         'dgv_sorted.Rows.Add(1)
         'dgv_sorted.Rows.Insert(dgv_sorted.Rows.GetRowCount() + 1,)
         dgv_sorted.Rows.Clear()
         For index = 0 To Form1.staff_list.Count - 1
             dgv_sorted.Rows.Add(Form1.staff_list(index).Staff_ID, Form1.staff_list(index).FirstName, Form1.staff_list(index).Surname, Form1.staff_list(index).Gender,
-                                Form1.staff_list(index).DOB, Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
+                                DateDiff(DateInterval.Year, Form1.staff_list(index).DOB, Date.Today), Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
                                 Form1.staff_list(index).Skill5, Form1.staff_list(index).Skill6)
             'MessageBox.Show(staff_list(index).FirstName & " " & staff_list(index).Surname)
         Next
@@ -71,6 +89,7 @@
 
     ' Optimized Linear Search using UserClass.Swap
     Private Sub search_linear(columnIndex As Integer, searchValue As String, useNarrowingCriteria As Boolean, narrowingCriteriaColumn As Integer, narrowingCriteriaValue As String)
+
         Dim results As New List(Of DataGridViewRow)
 
         ' Scan each row for a match
@@ -115,6 +134,10 @@
 
     ' Fills the results DataGridView with the found matches
     Private Sub FillResultsTable(results As List(Of DataGridViewRow))
+        myStopwatch.StopTimer()
+        txt_searchtime.Text = myStopwatch.GetFormattedTime
+        myStopwatch.ResetTimer()
+
         dgv_sorted.Rows.Clear()
 
         For Each row As DataGridViewRow In results
@@ -157,7 +180,7 @@
         dgv_sorted.Rows.Clear()
         For index = 0 To Form1.staff_list.Count - 1
             dgv_sorted.Rows.Add(Form1.staff_list(index).Staff_ID, Form1.staff_list(index).FirstName, Form1.staff_list(index).Surname, Form1.staff_list(index).Gender,
-                                Form1.staff_list(index).DOB, Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
+                                DateDiff(DateInterval.Year, Form1.staff_list(index).DOB, Date.Today), Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
                                 Form1.staff_list(index).Skill5, Form1.staff_list(index).Skill6)
             'MessageBox.Show(staff_list(index).FirstName & " " & staff_list(index).Surname)
         Next
@@ -171,7 +194,7 @@
         dgv_sorted.Rows.Clear()
         For index = 0 To Form1.staff_list.Count - 1
             dgv_sorted.Rows.Add(Form1.staff_list(index).Staff_ID, Form1.staff_list(index).FirstName, Form1.staff_list(index).Surname, Form1.staff_list(index).Gender,
-                                Form1.staff_list(index).DOB, Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
+                                DateDiff(DateInterval.Year, Form1.staff_list(index).DOB, Date.Today), Form1.staff_list(index).Pay, Form1.staff_list(index).Admin, Form1.staff_list(index).Skill1, Form1.staff_list(index).Skill2, Form1.staff_list(index).Skill3, Form1.staff_list(index).Skill4,
                                 Form1.staff_list(index).Skill5, Form1.staff_list(index).Skill6)
             'MessageBox.Show(staff_list(index).FirstName & " " & staff_list(index).Surname)
         Next

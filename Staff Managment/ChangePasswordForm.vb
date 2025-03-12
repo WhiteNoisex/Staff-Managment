@@ -1,14 +1,13 @@
 ﻿Public Class ChangePasswordForm
 
-    Private Sub txt_PSW1_TextChanged(sender As Object, e As EventArgs) Handles txt_PSW1.TextChanged
 
-    End Sub
 
-    Private Sub txt_PSW2_TextChanged(sender As Object, e As EventArgs) Handles txt_PSW2.TextChanged
-
-    End Sub
-
-    ' Reset/Change Password Button Click
+    ' Subroutine: Reset_Click
+    ' Inputs: VB Button
+    ' Returns: None
+    '
+    ' Environmental Effect:
+    ' Replaces users password field with password from dialog
     Private Sub Reset_Click(sender As Object, e As EventArgs) Handles Reset.Click
 
         'MessageBox.Show("Hello")
