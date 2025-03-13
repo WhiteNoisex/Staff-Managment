@@ -187,6 +187,8 @@
     Private Shared Sub ProcessStaffData(data As String)
         Dim result As String() = data.Split("|")
         If result.Length = 14 Then
+
+
             Dim newline As New Staff_class With {
                 .Staff_ID = result(0),
                 .FirstName = result(1),
@@ -203,6 +205,10 @@
                 .Pay = result(12),
                 .Password = result(13)
             }
+
+
+
+
             Form1.staff_list.Add(newline)
         Else
             Console.WriteLine("Invalid line format: " & data)
@@ -211,9 +217,26 @@
 
     ' Helper function to format a staff object as a string for saving
     Private Shared Function FormatStaffData(staff As Staff_class) As String
+
+        Dim Temppsw As String
+        Temppsw = staff.Password
+        '
+        'MessageBox.Show(result(5).Trim().ToLower())
+        If staff.Password IsNot "" And staff.Admin = True Then
+            Temppsw = PasswordSecurity.EncryptMasterKey(Login_Screen.masterKey, staff.Password)
+            UserManager.ManageEncryptionKey(staff.FirstName, Temppsw)
+            'MessageBox.Show(Temppsw)
+        End If
+
+        If staff.Password = "" And staff.Admin = True Then
+            Temppsw = ""
+            staff.Admin = False
+        End If
+
+
         Return $"{staff.Staff_ID}|{staff.FirstName}|{staff.Surname}|{staff.Gender}|{staff.DOB}|" &
                $"{If(staff.Admin, "Yes", "No")}|{staff.Skill1}|{staff.Skill2}|{staff.Skill3}|{staff.Skill4}|" &
-               $"{staff.Skill5}|{staff.Skill6}|{staff.Pay}|{staff.Password}"
+               $"{staff.Skill5}|{staff.Skill6}|{staff.Pay}|{Temppsw}"
     End Function
 
 

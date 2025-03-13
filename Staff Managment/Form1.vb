@@ -137,7 +137,8 @@ Public Class Form1
 
 
     Private Sub btn_modpsw_Click(sender As Object, e As EventArgs) Handles btn_modpsw.Click
-        If mod_mode = True Then
+        Dim selectedStaff = GetSelectedStaff()
+        If mod_mode = True And selectedStaff.Admin = True Then
             ChangePasswordForm.Show()
         End If
 
@@ -317,6 +318,8 @@ Public Class Form1
         If Not mod_mode Then Return
         Dim selectedStaff = GetSelectedStaff()
         If selectedStaff IsNot Nothing Then selectedStaff.Admin = chk_makeadmin.Checked
+        ChangePasswordForm.Show()
+
     End Sub
 
     ' Only saves changes if mod_mode is enabled
